@@ -1,3 +1,8 @@
+/**This class runs the application on the console which interacts 
+ * with other classes-DatabaseManager and Employee.
+ */
+
+
 package main.java;
 
 import java.util.Scanner;
@@ -20,6 +25,7 @@ private static Scanner input = new Scanner(System.in);
 			System.out.println("            press 3 for Login as Boss");
 			System.out.println("            press 4 to exit");
 			
+			//takes input to prompt the cases.
 			switch(input.nextInt()){
 			
 			case(1):
@@ -33,7 +39,7 @@ private static Scanner input = new Scanner(System.in);
 				loginBoss();
 				break;
 			case(4):
-				exit = 4;
+				exit = 4;//closes the application
 			
 			}
 			
@@ -43,6 +49,9 @@ private static Scanner input = new Scanner(System.in);
 		}
 	}
 	
+	/*This method registers the employee and 
+	 * adds info to the database
+	 */
 	private static void registerEmployee(){
 		employee = new Employee();
 		String pw1="";
@@ -57,6 +66,7 @@ private static Scanner input = new Scanner(System.in);
 		pw1 = input.next();
 		System.out.println("Re-enter your password: ");
 		pw2 = input.next();
+		//loops if passwords entered won't match
 		while(!(pw1.equals(pw2))){
 			System.out.println("Passwords doesn't match! Try again");
 			System.out.println("Enter your password: ");
@@ -68,9 +78,12 @@ private static Scanner input = new Scanner(System.in);
 		employee.setPassword(pw1);
 		employee.setId(i);
 		dbManager = new DatabaseManager(employee);
-		dbManager.saveUserData();
+		dbManager.saveUserData();//saves data to database
 		}
 	
+	/*This method promps user for employeeId and password 
+	 * to login to the application.
+	 */
 	private static void loginEmployee(){
 		int enteredId;
 		String pass;
@@ -97,6 +110,10 @@ private static Scanner input = new Scanner(System.in);
 		}
 	}
 	
+	/*Method to login as Boss. The
+	 * database has specific Id and password which 
+	 * only boss knows.
+	 */
 	private static void loginBoss(){
 		int enteredId;
 		String pass;
@@ -124,6 +141,9 @@ private static Scanner input = new Scanner(System.in);
 		
 	}
 	
+	/*This method prompts for actions once the user has
+	 * logged in.
+	 */
 	private static void furtherLoginOptions(String condition){
 		if(condition.equals("loggedinasemployee")){
 			System.out.println("Please press 1 for rating yourself");
